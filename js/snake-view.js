@@ -24,7 +24,6 @@ class View {
         let $body = $('body');
         let $paused = $(`<h2>PAUSED</h2>`);
         let $reset = $(`<section class="buttons2"><button class="impossible">Reset Game</button></section>`);
-
         $body.append($paused);
         $body.append($reset);
         $(".impossible").click((event) => {
@@ -87,6 +86,7 @@ class View {
 
   makeMove($tower) {
     this.renderBoard();
+    let thisView = this;
 
     let loop = setInterval(() => {
       if (this.paused === "false") {
@@ -100,6 +100,7 @@ class View {
           $body.append($newGame);
 
           $(".new").click((event) => {
+            thisView.paused = null;
             $('.board').children().remove();
             $('h2').remove();
             $('.buttons2').remove();
